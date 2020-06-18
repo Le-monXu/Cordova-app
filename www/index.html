@@ -1,0 +1,107 @@
+﻿<!--This is for mobile -->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>API Test</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- <link rel="stylesheet" href="lib/jquery.mobile-1.4.5.min.css" /> -->
+	<script src="lib/jquery-2.1.1.min.js"></script>
+	<script src="js/uploadPhoto.js"></script>
+	<script src="js/downloadPhoto.js"></script>
+	<!-- <script src="lib/jquery.mobile-1.4.5.min.js"></script> -->
+	<link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+
+	<script type="text/javascript" src="cordova.js"></script>
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#submitbtn").bind("click", function () {
+				$.ajax({
+					type: "get",
+					url: "http://192.168.0.104:8080/ProblemSolvingAPP/getAllAnswer",
+					data: {
+						method: $('#method').val(),
+						id: $('#id').val(),
+					},
+					datatype: "jsonp",
+					success: onSuccess,
+					error: onError
+				});
+				return false;
+			});
+
+		});
+
+		function onSuccess(data, status) {
+			data = $.trim(data); //去掉前后空格
+			$("#results").text = data;
+			alert(data)
+		}
+
+		function onError(data, status) {
+			//进行错误处理 
+			console.info("网络出错");
+		}
+	</script>
+
+
+</head>
+
+<body>
+	<div data-role="page">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h3 class="display-4">API测试</h3>
+				<p class="lead">测试获取所有答案、图片上传、下载</p>
+			</div>
+		</div>
+		<div data-role="content" class="container">
+			<form method="post" id="feedbackform">
+				<div class="form-group">
+					<label for="method">method:</label>
+					<input type="text" class="form-control" name="method" id="method" placeholder="请输入method">
+					<label for="id">id：</label>
+					<input type="text" class="form-control" name="id" id="id" placeholder="请输入id">
+				</div>
+				<input type="button" id="submitbtn" class="btn btn-primary btn-block mt-3" value="提交">
+			</form>
+
+
+
+			<div class="app mt-5">
+				<p>图片上传测试</p>
+				<div class="line"><button class="btn btn-primary btn-block" id="openLabrary">图片上传测试</button></div>
+				<div class="line"><img id="myImage" class="img-fluid"></img></div>
+				<div class="line"><span id="text"></span></div>
+			</div>
+
+			<div class="app mt-3">
+				<p>图片下载测试</p>
+				<div class="line"><button class="btn btn-primary btn-block" id="download">图片下载测试</button></div>
+				<div class="line"><img id="myImage1" class="img-fluid"></img></div>
+				<div class="line"><span id="text1"></span></div>
+			</div>
+
+			<div class="app mt-3">
+				<p>打开问题详情页</p>
+				<div class="form-group">
+					<label for="method">uid:</label>
+					<input type="text" class="form-control" name="method" id="uid" placeholder="请输入uid">
+					<label for="id">qid：</label>
+					<input type="text" class="form-control" name="id" id="qid" placeholder="请输入qid">
+				</div>
+				<button class="btn btn-primary btn-block" onclick="gotoQuestionDetails();">问题详情页</button>
+			</div>
+		</div>
+</body>
+<script>
+	function gotoQuestionDetails() {
+		localStorage.setItem("uid", $("#uid").val());
+		localStorage.setItem("qid", $("#qid").val());
+		location.href = "questionDetails.html";
+	}
+</script>
+
+</html>

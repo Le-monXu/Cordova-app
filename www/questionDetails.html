@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<script src="lib/jquery-2.1.1.min.js"></script>
+	<script src="lib/js/bootstrap.min.js"></script>
+	<!-- <script src="lib/jquery.mobile-1.4.5.min.js"></script> -->
+	<script src="js/questionDetails.js"></script>
+	<!-- <link rel="stylesheet" href="lib/jquery.mobile-1.4.5.min.css" /> -->
+	<link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+	<script type="text/javascript" src="cordova.js"></script>
+</head>
+
+<body>
+	<div class="jumbotron">
+		<h2 class="display-6 ">问题标题</h2>
+		<p>问题内容：It uses utility classes for typography and spacing to space content out within the larger container.</p>
+		<a class="btn btn-primary btn-sm" href="#myAnswer" role="button">我来回答</a>
+	</div>
+	<div class="p-1 text-center">
+		<h2 class="display-6">全部回答</h2>
+	</div>
+	<div class="container">
+		<!-- 回答列表 -->
+	</div>
+	<div class="p-1 text-center mt-3">
+		<h2 class="display-6">我来回答</h2>
+	</div>
+
+	<div class="m-3">
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">回答</span>
+			</div>
+			<textarea id="myAnswer" class="form-control" aria-label="With textarea"></textarea>
+		</div>
+		<div class="input-group mt-3 mb-3">
+			<input type="text" class="form-control" placeholder="图片地址" id="imgPath" disabled='disabled'>
+			<div class="input-group-append">
+				<button class="btn btn-primary" type="button" id="addPhoto">选择图片</button>
+			</div>
+		</div>
+
+		<!-- <button type="button" class="btn btn-primary btn-block mt-3" id="addPhoto">选择图片</button> -->
+		<button type="button" class="btn btn-primary btn-block" id="submitAnswer">提交</button>
+	</div>
+	<footer class="text-muted m-3">
+		<p class="float-right">
+			<a href="#">Back to top</a>
+		</p>
+		<p>Copyright © 2020-2020 版权所有 All Rights Reserved. </p>
+	</footer>
+</body>
+
+</html>
