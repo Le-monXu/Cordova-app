@@ -6,7 +6,16 @@ function onDeviceReady() {
         console.log("qid" + localStorage.getItem("qid"));
         $.ajax({
             type: "get",
-            async: false,
+            url: "http://192.168.0.104:8080/ProblemSolvingAPP/getAQuestion",
+            data: {
+                qid: localStorage.getItem("qid"),
+            },
+            datatype: "jsonp",
+            success: getAQuestionSuccess,
+            error: onError
+        });
+        $.ajax({
+            type: "get",
             url: "http://192.168.0.104:8080/ProblemSolvingAPP/getAllAnswer",
             data: {
                 // 从问题
@@ -64,6 +73,21 @@ function onDeviceReady() {
             return false;
         });
     });
+}
+
+//显示问题
+function getAQuestionSuccess(data, status) {
+    data = $.trim(data); //去掉前后空格
+    data = JSON.parse(data);
+    var row = "";
+    row = row + '<h2 class="display-6 ">' + data.content + '</h2>' +
+        '<p>提问者：' + data.uid + '&ensp;&ensp;&ensp;问题分类：' + data.category + "<br>" +
+        '问题详情：' + data.describe + '</p>';
+    if (data.location != null) {
+        row = row + '  <img src="http://192.168.0.104:8080/ProblemSolvingAPP/downloadFile?filename=' + data.location + '" class="figure-img img-fluid rounded">';
+    }
+    row = row + '<a class="btn btn-primary btn-sm" href="#myAnswer" role="button">我来回答</a>';
+    $(".jumbotron").append(row);
 }
 
 // 显示答案
@@ -218,7 +242,7 @@ function upload(fileURL, aid) {
 
     var ft = new FileTransfer();
     //上传地址
-    var SERVER = "http://192.168.0.104:8080/ProblemSolvingAPP/uploadFile?aid=" + aid;
+    var SERVER = "http://192.168.0.104:8080/ProblemSolvingAPP/uploadFile?method=aid&id=" + aid;
     ft.upload(fileURL, encodeURI(SERVER), success, fail, options);
 }
 

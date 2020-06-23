@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+<widget id="org.ynu.question" version="1.0.0" 
+    xmlns="http://www.w3.org/ns/widgets" 
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>问题协作</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        一个问题协作APP
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="535516201@qq.com、1656362440@qq.com、975200058@qq.com、2650189913@qq.com" href="#">
+        第五小组：朱永祥、徐文黎、刘宇、代林庆
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
@@ -23,4 +25,6 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <!-- 图标 -->
+    <icon src="www/img/app.png" platform="android" width="64" height="64" density="mdpi" />
 </widget>

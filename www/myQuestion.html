@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<script src="lib/jquery-2.1.1.min.js"></script>
+	<script src="lib/js/bootstrap.min.js"></script>
+	<script src="js/myQuestion.js"></script>
+	<link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/myQuestion.css" />
+	<script type="text/javascript" src="cordova.js"></script>
+	<title>我的问题</title>
+</head>
+
+<body>
+	<div class="jumbotron fixed-top">
+		<h2 class="display-6">我的问题</h2>
+	</div>
+
+	<div class="container" id="questionList" style="margin-top:8vh; padding-top:3vh;">
+		<!-- 问题列表 -->
+	</div>
+
+	<div class="p-1 text-center mt-3">
+		<h5 class="display-6">问题发布</h5>
+	</div>
+
+	<div class="m-3">
+		<div class="input-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">问题标题：</span>
+				</div>
+				<textarea id="answerTitle" class="form-control" aria-label="With textarea"></textarea>
+			</div>
+
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">问题类别：</span>
+				</div>
+				<textarea id="answerType" class="form-control" aria-label="With textarea"></textarea>
+			</div>
+
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">问题描述：</span>
+				</div>
+				<textarea id="answerDescribe" class="form-control" aria-label="With textarea"></textarea>
+			</div>
+		</div>
+
+		<div class="input-group mt-3 mb-3">
+			<input type="text" class="form-control" placeholder="图片地址" id="imgPath" disabled='disabled'>
+			<div class="input-group-append">
+				<button class="btn btn-primary" type="button" id="addPhoto">选择图片</button>
+			</div>
+		</div>
+
+		<!-- <button type="button" class="btn btn-primary btn-block mt-3" id="addPhoto">选择图片</button> -->
+		<button type="button" class="btn btn-primary btn-block" id="submitQuestion">提交</button>
+	</div>
+	<footer class="text-muted m-3">
+		<p>Copyright © 2020-2020 版权所有 All Rights Reserved. </p>
+	</footer>
+</body>
+
+</html>

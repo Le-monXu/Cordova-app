@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="lib/jquery-2.1.1.min.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <!--<script src="lib/jquery.mobile-1.4.5.min.js"></script>-->
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+    <!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
+    <title>registered</title>
+    <script>
+        function Reg() {
+            var $username = $("#getName").val(),
+                $pass = $("#getPass").val();
+            $age = $("#getAge").val();
+            $sex = $("#getSex").val();
+            $major = $("#getMajor").val();
+            if ($username == '' || $pass == '') {
+                alert("用户名及密码不能为空");
+                return false;
+            } else {
+                var datas = {
+                    name: $username,
+                    password: $pass,
+                    age: $age,
+                    sex: $sex,
+                    major: $major
+                }
+                $.ajax({
+                    url: "http://192.168.0.104:8080/ProblemSolvingAPP/signIn",
+                    type: 'post',
+                    data: datas,
+                    dataType: 'json',
+                    success: function (reslut) {
+                        if (reslut != "failed") {
+                            alert("注册成功，请牢记的的ID：" + reslut);
+                            location.href = "index.html"
+                        } else {
+                            alert('注册失败');
+                        }
+                    },
+                    error: function (error) {
+                        alert('网络错误，注册失败!');
+                    }
+                })
+            }
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <div data-role="page">
+        <div class="jumbotron">
+            <h3>用户注册</h3>
+        </div>
+        <div class="m-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">用户名：</span>
+                </div>
+                <input type="text" class="form-control" id="getName" placeholder="请输入用户名">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">密&nbsp&nbsp 码：</span>
+                </div>
+                <input type="password" class="form-control" id="getPass" placeholder="请输入密码">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">性&nbsp&nbsp 别：</span>
+                </div>
+                <select class="form-control" id="getSex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">年&nbsp&nbsp 龄：</span>
+                </div>
+                <input type="text" class="form-control" id="getAge">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">专&nbsp&nbsp 业：</span>
+                    </div>
+                    <input type="text" class="form-control" id="getMajor">
+                </div>
+            </div>
+            <button type="submit" id="getsubmit" class="btn btn-primary btn-block" onclick="Reg()">提交注册信息</button>
+            <p>已有账号立即<a href="index.html">登录</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
