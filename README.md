@@ -1,6 +1,6 @@
 # Cordova-app
 - Cordova期末开发———问题协作
-- 后端代码：
+- 后端代码：https://github.com/Le-monXu/Problem-Solving-APP
 
 ## 功能描述
 - 注册
