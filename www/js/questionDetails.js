@@ -80,8 +80,30 @@ function getAQuestionSuccess(data, status) {
     data = $.trim(data); //去掉前后空格
     data = JSON.parse(data);
     var row = "";
-    row = row + '<h2 class="display-6 ">' + data.content + '</h2>' +
-        '<p>提问者：' + data.uid + '&ensp;&ensp;&ensp;问题分类：' + data.category + "<br>" +
+    row = row + '<h2 class="display-6 ">' + data.content + '</h2>';
+    $.ajax({
+        type: "get",
+        // 关闭异步
+        async: false,
+        url: "http://192.168.0.104:8080/ProblemSolvingAPP/getAUser",
+        data: {
+            uid: data.uid,
+        },
+        datatype: "jsonp",
+        success: function (User) {
+            User = $.trim(User); //去掉前后空格
+            User = JSON.parse(User);
+            if (User != "failed") {
+                row = row + '<p>提问者：' + User.name;
+            } else {
+                console.log("获取用户名失败");
+            }
+        },
+        error: function (error) {
+            alert(error);
+        }
+    });
+    row = row + '&ensp;&ensp;&ensp;问题分类：' + data.category + "<br>" +
         '问题详情：' + data.describe + '</p>';
     if (data.location != null) {
         row = row + '  <img src="http://192.168.0.104:8080/ProblemSolvingAPP/downloadFile?filename=' + data.location + '" class="figure-img img-fluid rounded">';
@@ -107,9 +129,31 @@ function getAllAnswerSuccess(data, status) {
             // localStorage.removeItem(data[i].location);
             // row = row + "<img src=\"" + img + "\" class=\"card-img-top\"></img>";
         }
-        row = row + "<div class=\"card-body\">" +
-            "<h5 class=\"card-title\">" + data[i].uid + "</h5>" +
-            "<p class=\"mb-0\">" + data[i].answer + "</p>" +
+        row = row + "<div class=\"card-body\">";
+        $.ajax({
+            type: "get",
+            // 关闭异步
+            async: false,
+            url: "http://192.168.0.104:8080/ProblemSolvingAPP/getAUser",
+            data: {
+                uid: data[i].uid,
+            },
+            datatype: "jsonp",
+            success: function (User) {
+                User = $.trim(User); //去掉前后空格
+                User = JSON.parse(User);
+                if (User != "failed") {
+
+                    row = row + "<h5 class=\"card-title\">" + User.name + "</h5>";
+                } else {
+                    console.log("获取用户名失败");
+                }
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+        row = row + "<p class=\"mb-0\">" + data[i].answer + "</p>" +
             "<span class=\"badge badge-primary\">回答得分：" +
             data[i].score + "&ensp;&ensp;&ensp;点赞数：" + data[i].support + "</span>";
         // 判断是否评论过
